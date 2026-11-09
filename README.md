@@ -57,7 +57,7 @@ The LibreChat container was crash-looping on an invalid `CREDS_KEY`/`CREDS_IV` s
   - Migrated Docker application/database data to an encrypted EBS volume.
   - Enabled MFA on both the IAM user and the account root user.
   - Attempted GuardDuty — blocked by an AWS account verification/free-plan restriction (evidence retained; S-tier stretch item).
-  - Rotated the previously exposed Gemini API key in Parameter Store.
+  - Rotated the previously exposed Gemini API key in Parameter Store and propagated it into the running LibreChat container (recreated via Docker Compose), verified the app still serves HTTPS correctly afterward.
   - Drafted the presentation video script.
   - Pushed all automation/configuration source and documentation to this repository.
 
