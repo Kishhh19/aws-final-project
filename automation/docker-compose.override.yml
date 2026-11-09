@@ -1,0 +1,40 @@
+# HelpWise (Cobalt Dynamics) - overrides on top of LibreChat's own docker-compose.yml
+# Copy this file to the root of your LibreChat checkout (next to its docker-compose.yml)
+# before running `docker compose up -d`. Docker Compose merges it automatically.
+services:
+  api:
+    ports:
+      - "80:3080"
+    volumes:
+      # Our librechat.yaml config (customWelcome, Google endpoint settings, etc.)
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
+      # Branding assets swapped over LibreChat's defaults (reskin requirement #1 - Identity)
+      - type: bind
+        source: ./branding/assets/logo.svg
+        target: /app/client/public/assets/logo.svg
+      - type: bind
+        source: ./branding/assets/favicon-32x32.png
+        target: /app/client/public/assets/favicon-32x32.png
+      - type: bind
+        source: ./branding/assets/favicon-16x16.png
+        target: /app/client/public/assets/favicon-16x16.png
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: helpwise-caddy
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./project-site:/srv/project-site:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+volumes:
+  caddy_data:
+  caddy_config:

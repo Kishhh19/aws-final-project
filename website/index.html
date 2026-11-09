@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="HelpWise SAM10 AWS final project: secure AI assistance with monitoring, automation, backup and recovery.">
+  <title>HelpWise | AWS Final Project</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav"><a class="brand" href="#top">HELPWISE<span>.</span></a><nav><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#recovery">Recovery</a></nav><a class="launch" href="https://16-179-35-197.sslip.io" target="_blank" rel="noreferrer">Open application ↗</a></header>
+  <main id="top">
+    <section class="hero">
+      <div class="eyebrow">SAM10 • AWS CLOUD OPERATIONS</div>
+      <h1>AI assistance,<br><em>operated responsibly.</em></h1>
+      <p class="lead">HelpWise is a production-style LibreChat deployment on AWS with trusted HTTPS, private databases, measurable health, automated recovery evidence, and least-privilege access.</p>
+      <div class="hero-actions"><a class="primary" href="#evidence">Explore the evidence</a><span class="status"><i></i> Production verified</span></div>
+      <div class="metrics"><div><strong>8</strong><span>CloudWatch alarms</span></div><div><strong>5 min</strong><span>health interval</span></div><div><strong>14 days</strong><span>log retention</span></div><div><strong>58 sec</strong><span>tested restore RTO</span></div></div>
+    </section>
+
+    <section id="architecture" class="section architecture">
+      <div class="section-head"><span>01 / SYSTEM</span><h2>A small stack with<br>serious operations.</h2></div>
+      <div class="diagram">
+        <div class="node public"><small>PUBLIC EDGE</small><b>Trusted HTTPS</b><p>Caddy + Let's Encrypt</p></div><div class="arrow">→</div>
+        <div class="node core"><small>COMPUTE</small><b>HelpWise on EC2</b><p>LibreChat • RAG • Admin</p></div><div class="arrow">→</div>
+        <div class="node private"><small>PRIVATE DATA</small><b>Encrypted Docker data</b><p>MongoDB • PostgreSQL • Meilisearch</p></div>
+      </div>
+      <div class="rails"><div><b>Observe</b><span>CloudWatch metrics, dashboards, logs and SNS email alerts</span></div><div><b>Protect</b><span>IMDSv2, restricted SSH, private database ports and encrypted EBS</span></div><div><b>Recover</b><span>Nightly versioned S3 backups with tested isolated restoration</span></div></div>
+    </section>
+
+    <section id="evidence" class="section evidence">
+      <div class="section-head"><span>02 / EVIDENCE</span><h2>Controls that were<br>tested, not assumed.</h2></div>
+      <div class="cards">
+        <article><span class="num">A</span><h3>Availability</h3><p>Five-minute synthetic checks publish health, request, error, and response-time metrics. External HTTPS returned 200 with a valid certificate.</p><mark>HTTP 200 • TLS verified</mark></article>
+        <article><span class="num">B</span><h3>Alerting</h3><p>Eight alarms cover CPU, memory, disk, EC2 status, app health, errors, latency, and missing checks. A controlled error entered ALARM.</p><mark>SNS subscription confirmed</mark></article>
+        <article><span class="num">C</span><h3>Audit</h3><p>A multi-region CloudTrail records read and write management activity with log-file validation into a dedicated S3 bucket.</p><mark>Logging active</mark></article>
+        <article><span class="num">D</span><h3>Automation</h3><p>Systemd runs both the health publisher and nightly database backup unattended. Multiple successful runs were verified.</p><mark>2 automations • persistent timers</mark></article>
+      </div>
+    </section>
+
+    <section id="recovery" class="section recovery">
+      <div><span class="kicker">03 / RECOVERY TEST</span><h2>From archive<br>to verified data.</h2><p>The newest encrypted S3 archive was restored into a separate temporary MongoDB container. Production was never overwritten.</p></div>
+      <div class="recovery-panel"><div><span>RPO</span><strong>≈ 24 hours</strong><small>nightly schedule</small></div><div><span>RTO</span><strong>58 seconds</strong><small>measured test</small></div><div><span>RESULT</span><strong>61 collections</strong><small>1 user verified</small></div></div>
+    </section>
+
+    <section class="section incident"><span>04 / LEARNING</span><blockquote>“Reliability starts where the happy path ends.”</blockquote><p>The diagnosed fault was an invalid LibreChat credential-encryption key format. The fix moved authoritative values to secure parameter storage, added startup validation thinking, retained logs, and introduced health alerts plus a tested backup path.</p></section>
+  </main>
+  <footer><div class="brand">HELPWISE<span>.</span></div><p>SAM10 Final Project • Sydney Region • 2026</p><a href="https://16-179-35-197.sslip.io" target="_blank" rel="noreferrer">Launch HelpWise ↗</a></footer>
+</body>
+</html>

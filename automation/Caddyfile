@@ -1,0 +1,8 @@
+16-179-35-197.sslip.io {
+    reverse_proxy api:3080
+}
+
+project.16-179-35-197.sslip.io {
+    root * /srv/project-site
+    file_server
+}
